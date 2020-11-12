@@ -1,6 +1,5 @@
 package com.arpit.twitterclone.data.repository
 
-import androidx.annotation.MainThread
 import com.arpit.twitterclone.data.local.dao.PostsDao
 import com.arpit.twitterclone.data.remoteapi.TwitterCloneService
 import com.arpit.twitterclone.model.Post
@@ -29,12 +28,32 @@ class PostsRepository @Inject constructor(
     fun getAllPosts(): Flow<State<List<Post>>> {
         return object : NetworkBoundRepository<List<Post>, TweetNetworkResponse>() {
 
-            override suspend fun saveRemoteData(response: TweetNetworkResponse) =
-                postsDao.insertPosts(response.data)
+            override suspend fun saveRemoteData(response: TweetNetworkResponse) {
+                val list = response.data
+                var listPost = mutableListOf<Post>()
+
+                for (i in list){
+                    listPost.add(Post(
+                        name = i.name,
+                        handle = i.handle,
+                        favoriteCount = i.favoriteCount,
+                        retweetCount = i.retweetCount,
+                        profileImageUrl = i.profileImageUrl,
+                        text = i.text
+                    ))
+                }
+
+                postsDao.insertPosts(listPost)
+            }
 
             override fun fetchFromLocal(): Flow<List<Post>> = postsDao.getAllPosts()
 
-            override suspend fun fetchFromRemote(): Response<TweetNetworkResponse> = twitterDemoService.getPosts()
+            override suspend fun fetchFromRemote(): Response<TweetNetworkResponse> =
+                twitterDemoService.getPosts()
+
+            override suspend fun deleteDbData() {
+                postsDao.deleteAllPosts()
+            }
         }.asFlow()
     }
 
@@ -43,7 +62,7 @@ class PostsRepository @Inject constructor(
      * searchText - Search text
      * returns List of Posts
      */
-    @MainThread
-    fun getPostBySearchVal(searchText: String): Flow<List<Post>> = postsDao.getPostBySearchVal(searchText)
+    fun getPostBySearchVal(searchText: String): Flow<List<Post>> =
+        postsDao.getPostBySearchVal(searchText)
 
 }

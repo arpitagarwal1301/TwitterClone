@@ -16,7 +16,7 @@ interface PostsDao {
     /**
      * Insert posts
      */
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPosts(posts: List<Post>)
 
     /**
@@ -30,4 +30,7 @@ interface PostsDao {
      */
     @Query("SELECT * FROM ${Post.TABLE_NAME} WHERE NAME LIKE :searchText OR HANDLE LIKE :searchText OR TEXT LIKE :searchText")
     fun getPostBySearchVal(searchText: String): Flow<List<Post>>
+
+    @Query("DELETE FROM ${Post.TABLE_NAME}")
+    suspend fun deleteAllPosts()
 }

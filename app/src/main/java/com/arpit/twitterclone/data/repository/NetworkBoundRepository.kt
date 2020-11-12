@@ -1,6 +1,5 @@
 package com.arpit.twitterclone.data.repository
 
-import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import com.arpit.twitterclone.model.State
 import kotlinx.coroutines.flow.*
@@ -32,6 +31,7 @@ abstract class NetworkBoundRepository<ResultType,RequestType> {
         // Check for response validation
         if (apiResponse.isSuccessful && remotePosts != null) {
             // Save posts into the persistence storage
+            deleteDbData()
             saveRemoteData(remotePosts)
         } else {
             // Something went wrong! Emit Error state.
@@ -41,7 +41,7 @@ abstract class NetworkBoundRepository<ResultType,RequestType> {
         // Retrieve posts from persistence storage and emit
         emitAll(
             fetchFromLocal().map {
-                State.success<ResultType>(it)
+                State.success(it)
             }
         )
     }.catch { e ->
@@ -52,25 +52,23 @@ abstract class NetworkBoundRepository<ResultType,RequestType> {
 
     /**
      * Save remote data
-     *
      * @param response
      */
     @WorkerThread
     protected abstract suspend fun saveRemoteData(response: RequestType)
 
+    @WorkerThread
+    protected abstract suspend fun deleteDbData()
+
     /**
      * Fetch from local
-     *
      * @return
      */
-    @MainThread
     protected abstract fun fetchFromLocal(): Flow<ResultType>
 
     /**
      * Fetch from remote
-     *
      * @return
      */
-    @MainThread
     protected abstract suspend fun fetchFromRemote(): Response<RequestType>
 }

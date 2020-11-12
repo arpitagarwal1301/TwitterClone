@@ -10,9 +10,11 @@ import com.arpit.twitterclone.model.Post.Companion.TABLE_NAME
  */
 @Entity(tableName = TABLE_NAME)
 data class Post(
+
+    @PrimaryKey(autoGenerate = true)
+    var id:Int = 0,
     var name: String? = null,
     var handle: String? = null,
-    @PrimaryKey
     var favoriteCount: Int = 0,
     var retweetCount: Int = 0,
     var profileImageUrl: String? = null,
@@ -21,4 +23,6 @@ data class Post(
     companion object {
         const val TABLE_NAME = "twitter_posts"
     }
+
+
 }
