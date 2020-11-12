@@ -3,7 +3,6 @@ package com.arpit.twitterclone.ui
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.viewModels
-import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.observe
 import com.arpit.twitterclone.R
 import com.arpit.twitterclone.databinding.ActivityMainBinding
@@ -27,18 +26,17 @@ class MainActivity: BaseActivity<MainViewModel, ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         setContentView(mViewBinding.root)
 
-        mViewBinding.postRecyclerView.adapter = mAdapter
 
+
+        setUpViews()
         initPosts()
         fetchData()
-        setUpEditText()
     }
 
-    private fun setUpEditText() {
-        // Get input text
-        mViewBinding.outlinedTextField.editText?.doOnTextChanged { inputText, _, _, _ ->
-            // Respond to input text change
-            searchByValue(inputText.toString())
+    private fun setUpViews() {
+        mViewBinding.postRecyclerView.adapter = mAdapter
+        mViewBinding.searchButton.setOnClickListener {
+            searchByValue(mViewBinding.outlinedTextField.editText?.text.toString())
         }
 
         mViewModel.postsSearchLiveData.observe(this) {
