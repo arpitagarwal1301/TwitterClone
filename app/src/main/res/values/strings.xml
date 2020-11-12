@@ -2,5 +2,6 @@
     <string name="app_name">TwitterClone</string>
     <string name="search_hint">Search Text</string>
     <string name="label_search">Search</string>
+    <string name="default_count">0</string>
 
 </resources>

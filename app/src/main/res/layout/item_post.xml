@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,43 +6,96 @@
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     tools:ignore="UnusedAttribute"
-    android:paddingTop="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:paddingTop="@dimen/medium_margin"
+    android:paddingLeft="@dimen/medium_margin"
+    android:paddingRight="@dimen/medium_margin"
     android:background="@color/white">
-
-    <TextView
-        android:id="@+id/post_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/lorem" />
-
-    <TextView
-        android:id="@+id/post_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_title"
-        tools:text="@tools:sample/full_names" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="82sp"
-        android:layout_height="82sp"
-        android:transitionName="photo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="@dimen/large_image_50"
+        android:layout_height="@dimen/large_image_50"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_margin"
+        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="@id/imageView"
+        tools:text="@tools:sample/lorem" />
+
+    <TextView
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_margin"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
+        app:layout_constraintStart_toEndOf="@id/imageView"
+        tools:text="@tools:sample/full_names" />
+
+    <ImageView
+        android:id="@+id/like"
+        android:layout_width="@dimen/small_image_16"
+        android:layout_height="@dimen/small_image_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/name"
+        app:srcCompat="@drawable/ic_fav" />
+
+
+    <ImageView
+        android:id="@+id/retweet"
+        android:layout_width="@dimen/small_image_16"
+        android:layout_height="@dimen/small_image_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/handle"
+        app:srcCompat="@drawable/ic_retweet" />
+
+    <TextView
+        android:id="@+id/likeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:text="@string/default_count"
+        android:textSize="@dimen/small_text_12"
+        app:layout_constraintBottom_toBottomOf="@id/like"
+        app:layout_constraintEnd_toStartOf="@id/like" />
+
+    <TextView
+        android:id="@+id/retweetCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:text="@string/default_count"
+        android:textSize="@dimen/small_text_12"
+        app:layout_constraintBottom_toBottomOf="@id/retweet"
+        app:layout_constraintEnd_toStartOf="@id/retweet" />
+
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/divider"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        tools:text="@tools:sample/lorem/random" />
+
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#808080"
-        tools:ignore="MissingConstraints"
+        android:background="@color/divider_color"
+        android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
