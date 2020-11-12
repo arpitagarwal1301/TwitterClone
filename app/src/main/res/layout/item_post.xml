@@ -26,7 +26,8 @@
         android:layout_marginStart="@dimen/medium_margin"
         app:layout_constraintStart_toEndOf="@id/imageView"
         app:layout_constraintTop_toTopOf="@id/imageView"
-        tools:text="@tools:sample/lorem" />
+        tools:text="@tools:sample/lorem"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/handle"
@@ -35,7 +36,8 @@
         android:layout_marginStart="@dimen/medium_margin"
         app:layout_constraintBottom_toBottomOf="@id/imageView"
         app:layout_constraintStart_toEndOf="@id/imageView"
-        tools:text="@tools:sample/full_names" />
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/item_text_color" />
 
     <ImageView
         android:id="@+id/like"
@@ -62,7 +64,8 @@
         android:text="@string/default_count"
         android:textSize="@dimen/small_text_12"
         app:layout_constraintBottom_toBottomOf="@id/like"
-        app:layout_constraintEnd_toStartOf="@id/like" />
+        app:layout_constraintEnd_toStartOf="@id/like"
+        android:textColor="@color/item_text_color" />
 
     <TextView
         android:id="@+id/retweetCount"
@@ -72,7 +75,8 @@
         android:text="@string/default_count"
         android:textSize="@dimen/small_text_12"
         app:layout_constraintBottom_toBottomOf="@id/retweet"
-        app:layout_constraintEnd_toStartOf="@id/retweet" />
+        app:layout_constraintEnd_toStartOf="@id/retweet"
+        android:textColor="@color/item_text_color" />
 
 
     <TextView
