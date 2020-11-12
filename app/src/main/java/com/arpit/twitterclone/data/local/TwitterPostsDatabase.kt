@@ -1,4 +1,4 @@
-package com.arpit.twitterclone.data
+package com.arpit.twitterclone.data.local
 
 import android.content.Context
 import androidx.room.Database
@@ -28,7 +28,8 @@ abstract class TwitterPostsDatabase : RoomDatabase() {
         private var INSTANCE: TwitterPostsDatabase? = null
 
         fun getInstance(context: Context): TwitterPostsDatabase {
-            val tempInstance = INSTANCE
+            val tempInstance =
+                INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
