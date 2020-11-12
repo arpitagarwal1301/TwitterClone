@@ -11,19 +11,18 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         tools:context=".ui.main.MainActivity"
-        android:background="#808080"
-        android:layout_margin="100dp">
+        android:background="@color/main_screen_background">
 
         <LinearLayout
             android:id="@+id/headerLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
             android:background="@color/white"
-            android:padding="10dp"
+            android:padding="@dimen/medium_margin"
             app:layout_constraintBottom_toTopOf="@+id/postRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +36,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/black"
+                android:textColorHint="@color/black"
                 android:hint="@string/search_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -59,10 +60,10 @@
             android:id="@+id/postRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

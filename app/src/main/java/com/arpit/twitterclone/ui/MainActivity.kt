@@ -89,7 +89,6 @@ class MainActivity: BaseActivity<MainViewModel, ActivityMainBinding>() {
         if (mViewModel.postsLiveData.value is State.Error || mAdapter.itemCount == 0) {
             getPosts()
         }
-
     }
 
     private fun getPosts() {
@@ -97,7 +96,6 @@ class MainActivity: BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     private fun onItemClicked(post: Post, imageView: ImageView) {
-        showToast("Item clicked")
     }
 
 
